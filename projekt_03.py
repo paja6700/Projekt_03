@@ -98,3 +98,21 @@ def process_municipality(link):
         party_votes.append('')
 
     return registered, envelopes, valid_votes, party_votes
+
+def process_all_tables(soup):
+    data = []
+    tables = soup.find_all('table')
+
+    for table in tables:
+        for row in table.find_all('tr')[2:]:
+            cells = row.find_all('td')
+            if len(cells) >= 2:
+                number = cells[0].text.strip()
+                name = cells[1].text.strip()
+                link_tag = cells[0].find('a')
+                if link_tag and 'href' in link_tag.attrs:
+                    link = 'https://www.volby.cz/pls/ps2017nss/' + link_tag['href']
+                    registered, envelopes, valid_votes, party_votes = process_municipality(link)
+                    data.append([number, name, registered, envelopes, valid_votes] + party_votes)
+    return data
+
