@@ -41,6 +41,7 @@ party_names = [
     "Strana Práv Občanů"
 ]
 
+#function to format numbers
 def format_number(value):
     try:
         clean_value = value.replace(" ", "")  
@@ -48,6 +49,7 @@ def format_number(value):
     except (ValueError, AttributeError):
         return value
 
+#function to fetch page content
 def get_page_content(link):
     response = requests.get(link)
     if response.status_code != 200:
@@ -55,6 +57,7 @@ def get_page_content(link):
         return None
     return BeautifulSoup(response.text, 'html.parser')
 
+#function to get voting data
 def get_basic_info(soup):
     table = soup.find('table', {'id': 'ps311_t1'})
     if not table:
@@ -70,6 +73,7 @@ def get_basic_info(soup):
     except (IndexError, AttributeError):
         return None, None, None
 
+#function to get party votes
 def get_party_votes(soup, table_id):
     table = soup.find('th', {'id': table_id}).find_parent('table')
     if not table:
@@ -83,6 +87,7 @@ def get_party_votes(soup, table_id):
             party_votes.append(format_number(cells[2].text.strip()))
     return party_votes
 
+#process a single municipality
 def process_municipality(link):
     soup = get_page_content(link)
     if soup is None:
@@ -99,6 +104,7 @@ def process_municipality(link):
 
     return registered, envelopes, valid_votes, party_votes
 
+#process all municipalities
 def process_all_tables(soup):
     data = []
     tables = soup.find_all('table')
@@ -116,6 +122,7 @@ def process_all_tables(soup):
                     data.append([number, name, registered, envelopes, valid_votes] + party_votes)
     return data
 
+#function for export data to csv
 def create_csv(output_file, data):
     header = ['Kód obce', 'Název obce', 'Počet voličů', 'Vydané obálky', 'Platné hlasy'] + party_names
 
@@ -126,6 +133,7 @@ def create_csv(output_file, data):
 
     print(f"File {output_file} successfully created.")
 
+#main functions
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: python projekt_3.py <URL> <output_file.csv>")
