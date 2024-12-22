@@ -47,3 +47,10 @@ def format_number(value):
         return f"{int(clean_value):,}".replace(",", " ")  
     except (ValueError, AttributeError):
         return value
+
+def get_page_content(link):
+    response = requests.get(link)
+    if response.status_code != 200:
+        print(f"Error: Unable to fetch page {link}")
+        return None
+    return BeautifulSoup(response.text, 'html.parser')
