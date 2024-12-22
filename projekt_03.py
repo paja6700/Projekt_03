@@ -83,3 +83,18 @@ def get_party_votes(soup, table_id):
             party_votes.append(format_number(cells[2].text.strip()))
     return party_votes
 
+def process_municipality(link):
+    soup = get_page_content(link)
+    if soup is None:
+        return None, None, None, []
+
+    registered, envelopes, valid_votes = get_basic_info(soup)
+
+    party_votes_1 = get_party_votes(soup, 't1sb3')
+    party_votes_2 = get_party_votes(soup, 't2sb3')
+    party_votes = party_votes_1 + party_votes_2
+
+    while len(party_votes) < len(party_names):
+        party_votes.append('')
+
+    return registered, envelopes, valid_votes, party_votes
