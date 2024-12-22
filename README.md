@@ -1,6 +1,6 @@
 # Election Scraper pro výsledky voleb z roku 2017
 
-## Python projekt 3 Engeto Akademie
+## Python projekt_03 Engeto Akademie
 
 Projekt využívající funkci Election scraper, který získává výsledky voleb z roku 2017 z webu volby.cz. 
 Odkaz [ZDE](https://volby.cz/pls/ps2017nss/ps3?xjazyk=CZ)
@@ -34,7 +34,7 @@ Skript vyžaduje dva argumenty: URL stránky s výsledky a název výstupního s
 
 ## Příklad spuštění:
 
-Výsledky hlasování Plzeň město
+Výsledky hlasování Kladno
 
 1. argument: https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=2&xnumnuts=2103
 2. argument: vysledky_kladno.csv
