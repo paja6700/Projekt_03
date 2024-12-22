@@ -116,3 +116,12 @@ def process_all_tables(soup):
                     data.append([number, name, registered, envelopes, valid_votes] + party_votes)
     return data
 
+def create_csv(output_file, data):
+    header = ['Kód obce', 'Název obce', 'Počet voličů', 'Vydané obálky', 'Platné hlasy'] + party_names
+
+    with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(header)
+        writer.writerows(data)
+
+    print(f"File {output_file} successfully created.")
