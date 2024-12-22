@@ -69,3 +69,17 @@ def get_basic_info(soup):
         return registered, envelopes, valid_votes
     except (IndexError, AttributeError):
         return None, None, None
+
+def get_party_votes(soup, table_id):
+    table = soup.find('th', {'id': table_id}).find_parent('table')
+    if not table:
+        print(f"Error: Table with ID '{table_id}' not found.")
+        return []
+
+    party_votes = []
+    for row in table.find_all('tr')[2:]:
+        cells = row.find_all('td')
+        if len(cells) > 1:
+            party_votes.append(format_number(cells[2].text.strip()))
+    return party_votes
+
