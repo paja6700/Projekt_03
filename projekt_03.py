@@ -40,3 +40,10 @@ party_names = [
     "Svob.a př.dem.-T.Okamura (SPD)",
     "Strana Práv Občanů"
 ]
+
+def format_number(value):
+    try:
+        clean_value = value.replace(" ", "")  
+        return f"{int(clean_value):,}".replace(",", " ")  
+    except (ValueError, AttributeError):
+        return value
