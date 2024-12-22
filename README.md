@@ -41,5 +41,3 @@ Výsledky hlasování Plzeň město
 
 Kompletní příklad:
 python projekt_03.py "https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=2&xnumnuts=2103" vysledky_kladno.csv
-
-````bash
