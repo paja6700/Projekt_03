@@ -125,3 +125,18 @@ def create_csv(output_file, data):
         writer.writerows(data)
 
     print(f"File {output_file} successfully created.")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: python projekt_3.py <URL> <output_file.csv>")
+        sys.exit(1)
+
+    url = sys.argv[1]
+    output_file = sys.argv[2]
+
+    soup = get_page_content(url)
+    if soup is None:
+        sys.exit(1)
+
+    data = process_all_tables(soup)
+    create_csv(output_file, data)
