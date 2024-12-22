@@ -54,3 +54,18 @@ def get_page_content(link):
         print(f"Error: Unable to fetch page {link}")
         return None
     return BeautifulSoup(response.text, 'html.parser')
+
+def get_basic_info(soup):
+    table = soup.find('table', {'id': 'ps311_t1'})
+    if not table:
+        print("Error: Table with ID 'ps311_t1' not found.")
+        return None, None, None
+
+    rows = table.find_all('tr')
+    try:
+        registered = format_number(rows[2].find_all('td')[3].text.strip())
+        envelopes = format_number(rows[2].find_all('td')[4].text.strip())
+        valid_votes = format_number(rows[2].find_all('td')[7].text.strip())
+        return registered, envelopes, valid_votes
+    except (IndexError, AttributeError):
+        return None, None, None
