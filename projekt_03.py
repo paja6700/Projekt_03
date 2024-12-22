@@ -12,3 +12,31 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
+#party names
+party_names = [
+    "Občanská demokratická strana",
+    "Řád národa - Vlastenecká unie",
+    "CESTA ODPOVĚDNÉ SPOLEČNOSTI",
+    "Česká str.sociálně demokrat.",
+    "Radostné Česko",
+    "STAROSTOVÉ A NEZÁVISLÍ",
+    "Komunistická str.Čech a Moravy",
+    "Strana zelených",
+    "ROZUMNÍ-stop migraci,diktát.EU",
+    "Strana svobodných občanů",
+    "Blok proti islam.-Obran.domova",
+    "Občanská demokratická aliance",
+    "Česká pirátská strana",
+    "OBČANÉ 2011-SPRAVEDL. PRO LIDI",
+    "Referendum o Evropské unii",
+    "TOP 09",
+    "ANO 2011",
+    "SPR-Republ.str.Čsl. M.Sládka",
+    "Křesť.demokr.unie-Čs.str.lid.",
+    "Česká strana národně sociální",
+    "REALISTÉ",
+    "SPORTOVCI",
+    "Dělnic.str.sociální spravedl.",
+    "Svob.a př.dem.-T.Okamura (SPD)",
+    "Strana Práv Občanů"
+]
